@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear salón</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper blue-grey darken-4">
+            <a href="#!" class="brand-logo flex-align-center">
+                <i class="material-icons">
+                    school
+                </i>
+                School Manager
+            </a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <a href="index.html" class="nav-link">
+                        <i class="material-icons">
+                            add_circle_outline
+                        </i> Crear salón
+                    </a>
+                </li>
+                <li><a href="editar.html" class="nav-link">
+                        <i class="material-icons">
+                            edit
+                        </i>
+                        Editar salón</a></li>
+                <li><a href="analitica.html" class="nav-link">
+                        <i class="material-icons">
+                            analytics
+                        </i>
+                        Analítica</a></li>
+                <li><a href="exportar.html" class="nav-link">
+                    <span class="material-icons">
+                        file_download
+                    </span>
+                    Exportar</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="index.html"><i class="material-icons">
+                    add_circle_outline
+                </i> Crear salón</a></li>
+        <li><a href="editar.html">
+                <i class="material-icons">
+                    edit
+                </i> Editar salón
+            </a></li>
+        <li><a href="analitica.html	" class="nav-link">
+                <i class="material-icons">
+                    analytics
+                </i> Analítica</a></li>
+        <li><a href="exportar.html" class="nav-link">
+                <span class="material-icons">
+                    file_download
+                </span>
+            Exportar</a>
+        </li>
+    </ul>
+
+
+
+    <div class="container mt-3 flex-align-center">
+        <div class="row flex-col-align-center">
+            <div class="row">
+                <h3>Detalles del salón</h3>
+            </div>
+            <div class="row">
+                <ul class="collapsible">
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">
+                            receipt_long
+                        </i> Instrucciones</div>
+                        <div class="collapsible-body">
+                            <p>En esta sección, se puede agregar un nuevo salón a una lista, 
+                                especificando el número de materias y el número de estudiantes,
+                                formando una matriz NxM.
+                            </p>
+                            <p>
+                                <b>El número de materias y de estudiantes deben ser ambos mayor a
+                                    0</b>
+                            </p>
+                            <p>
+                                La estructura de datos se guardan automáticamente en el Local Storage del navegador
+                            </p>
+                            <p>
+                                <b>Seleccionar alguno de los salones en la lista inferior lo llevará automáticamente
+                                    a la edición del salón
+                                </b>
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+            <div id="classroom-section" class="row">
+                <div id="classroom-size" class="col">
+                    <label for="classroom-students">Número de estudiantes</label>
+                    <div class="input-group">
+                        <button class="btn red material-icons" action="minus">
+                            remove
+                        </button>
+                        <input type="text" name="classroom-students" id="classroom-students-input" readonly
+                            class="text-center flex-align-center" value='0'>
+                        <button class="btn material-icons" action="plus">
+                            add
+                        </button>
+                    </div>
+
+                </div>
+                <div id="subjects-num" class="col">
+                    <label for="classroom-students">Número de materias</label>
+                    <div class="input-group">
+                        <button class="btn red material-icons" action="minus">
+                            remove
+                        </button>
+                        <input type="text" name="classroom-subjects" id="classroom-subjects-input" readonly
+                            class="text-center flex-align-center" value='0'>
+                        <button class="btn material-icons" action="plus">
+                            add
+                        </button>
+                    </div>
+
+                </div>
+                <div class="col input-group">
+                    <button class="btn waves-effect waves-light green accent-3" action="create">
+                        Crear salón
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="">
+        <h5>Salones</h5>
+        <div class="collection max-h-35 overflow-y" id="classroom-collection">
+    
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

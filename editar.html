@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar salón</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper blue-grey darken-4">
+            <a href="#!" class="brand-logo flex-align-center">
+                <i class="material-icons">
+                    school
+                    </i>
+                School Manager
+            </a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <a href="index.html" class="nav-link">
+                        <i class="material-icons">
+                            add_circle_outline
+                        </i> 
+                        Crear salón
+                    </a>
+                </li>
+                <li><a href="editar.html" class="nav-link">
+                    <i class="material-icons">
+                        edit
+                        </i>
+                        Editar salón</a></li>
+                <li><a href="analitica.html" class="nav-link">
+                    <i class="material-icons">
+                        analytics
+                        </i>
+                    Analítica</a>
+                </li>
+                <li><a href="exportar.html" class="nav-link">
+                <span class="material-icons">
+                    file_download
+                </span>
+            Exportar</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="index.html"><i class="material-icons">
+            add_circle_outline
+        </i> 
+        Crear salón</a></li>
+        <li><a href="editar.html">
+            <i class="material-icons">
+                edit
+                </i>
+            Editar salón
+        </a></li>
+        <li><a href="analitica.html">
+            <i class="material-icons">
+                analytics
+                </i>
+            Analítica</a></li>
+        <li><a href="exportar.html" class="nav-link">
+                <span class="material-icons">
+                    file_download
+                </span>
+            Exportar</a></li>
+    </ul>
+
+    <div class="container mt-3 flex-col-align-center">
+        <div class="row">
+            <h3>Editar el salón</h3>
+        </div>
+        <div class="row">
+            <ul class="collapsible">
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">
+                        receipt_long
+                    </i> Instrucciones</div>
+                    <div class="collapsible-body">
+                        <p>
+                            En esta sección se puede asignar un promedio a cada estudiante
+                            por cada materia, bajo la siguiente nomenclatura:
+                        </p>
+                        <ul>
+                            <li><b>M - n:</b> Materia #n</li>
+                            <li><b>E - m:</b> Estudiante #m</li>
+                        </ul>
+                        <p>
+                            Los cambios se ven automáticamente reflejados en el Local Storage del navegador    
+                        </p>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+        <div class="row flex-align-center" id="classroom-edition">
+
+        </div>
+    </div>    
+    <div class="">
+        <h5>Salones</h5>
+        <div class="collection max-h-35 overflow-y" id="classroom-collection">
+            
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

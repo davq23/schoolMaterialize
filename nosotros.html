@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analítica de salón</title>
+    <title>Nosotros</title>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -53,18 +53,16 @@
                         </i>
                         Analítica</a></li>
                 <li><a href="exportar.html" class="nav-link">
-                <span class="material-icons">
-                    file_download
-                </span>
-            Exportar/Importar</a></li>
-                <li>
-                    <button class="btn red flex-align-center" id="empty-data">
                         <span class="material-icons">
-                            delete_sweep
+                            file_download
                         </span>
-                        Vaciar datos
-                    </button>
-                </li>
+                        Exportar/Importar</a></li>
+                <button class="btn red flex-align-center" id="empty-data">
+                    <span class="material-icons">
+                        delete_sweep
+                    </span>
+                    Vaciar datos
+                </button>
             </ul>
         </div>
     </nav>
@@ -93,7 +91,8 @@
                 <span class="material-icons">
                     file_download
                 </span>
-            Exportar/Importar</a></li>
+                Exportar/Importar</a></li>
+
         <li>
             <button class="btn red flex-align-center" id="empty-data-mobile">
                 <span class="material-icons">
@@ -105,47 +104,53 @@
     </ul>
 
 
-    <div class="row flex-wrap">
-
-        <div class="col s4">
-            <h5>Salones</h5>
-            <div id="classroom-analytics-list" class="collection">
-            </div>
-        </div>
-        <div class="col s8 text-center">
+    <div class="row flex-wrap w-100">
+        <div class="col text-center w-100">
             <div class="row">
-                <h3>Analítica del salón</h3>
+                <h3>Nosotros</h3>
                 <ul class="collapsible">
                     <li>
                         <div class="collapsible-header"><i class="material-icons">
                                 receipt_long
-                            </i> Instrucciones</div>
-                        <div class="collapsible-body">
-                            <p>En esta sección, se puede agregar un nuevo salón a una lista,
-                                especificando el número de materias y el número de estudiantes,
-                                formando una matriz NxM.
+                            </i> ¿Quiénes somos?</div>
+                        <div class="collapsible-body text-justify">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium beatae esse et odit
+                                iste magni autem quae, voluptatibus neque? Ullam porro blanditiis minima inventore,
+                                asperiores commodi quibusdam rerum provident ex molestias magni dolore quisquam
+                                consectetur sunt nemo aperiam cupiditate dolorem libero odit nihil corrupti, dolores
+                                saepe! Nihil nulla aperiam totam dolorum excepturi quasi explicabo consequuntur a
+                                placeat, id necessitatibus unde officiis accusantium similique aut rerum, nesciunt
+                                praesentium nisi. Modi, dolorum! Nisi animi, sint odit molestias iusto necessitatibus
+                                optio. Iste fugiat facere accusantium sint error nisi dolore! Doloribus amet ducimus
+                                nobis? Mollitia, iusto! Officiis deserunt tempora enim corporis, esse laudantium quos?
                             </p>
                             <p>
-                                <b>El número de materias y de estudiantes deben ser ambos mayor a
-                                    0</b>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis atque tempora
+                                error necessitatibus fugiat quod, consectetur quam reprehenderit. Veniam, ducimus velit
+                                asperiores obcaecati optio quis eaque natus quibusdam cum sequi.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">
+                            receipt_long
+                        </i> ¿Para qué esto?</div>
+                        <div class="collapsible-body text-justify">
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque non at minus
+                                aspernatur in nam nemo fugit doloremque ex dolores rerum asperiores, odio quas amet
+                                quos tempora. Optio ducimus nemo modi non repudiandae a qui, ipsum architecto aut
+                                dolor quos sint ex temporibus voluptate nostrum beatae maxime explicabo quaerat
+                                consequuntur?
                             </p>
                             <p>
-                                La estructura de datos se guardan automáticamente en el Local Storage del navegador
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis atque tempora
+                                error necessitatibus fugiat quod, consectetur quam reprehenderit. Veniam, ducimus velit
+                                asperiores obcaecati optio quis eaque natus quibusdam cum sequi.
                             </p>
                         </div>
                     </li>
                 </ul>
-            </div>
-            <div class="row" id="classroom-analytics" class="text-start overflow-y max-vh-75">
-                <h4>Promedios</h4>
-                <label for="all-student-mean" >Promedio de todos los estudiantes</label>
-                <input type="number" name="all-student-mean" id="all-student-mean" class="text-center" readonly>
-                <div id="mean-per-student" class="flex-align-center flex-wrap">
-                    
-                </div>
-                <div id="mean-per-subject" class="flex-align-center flex-wrap">
-
-                </div>
             </div>
         </div>
 

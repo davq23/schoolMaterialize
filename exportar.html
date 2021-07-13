@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analítica de salón</title>
+    <title>Exportar/Importar</title>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -29,6 +29,13 @@
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li>
+                    <a href="nosotros.html" class="nav-link">
+                        <i class="material-icons">
+                            people
+                        </i> Nosotros
+                    </a>
+                </li>
+                <li>
                     <a href="index.html" class="nav-link">
                         <i class="material-icons">
                             add_circle_outline
@@ -46,15 +53,28 @@
                         </i>
                         Analítica</a></li>
                 <li><a href="exportar.html" class="nav-link">
-                <span class="material-icons">
-                    file_download
-                </span>
-            Exportar</a></li>
+                        <span class="material-icons">
+                            file_download
+                        </span>
+                        Exportar/Importar</a></li>
+                <button class="btn red flex-align-center" id="empty-data">
+                    <span class="material-icons">
+                        delete_sweep
+                    </span>
+                    Vaciar datos
+                </button>
             </ul>
         </div>
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
+        <li>
+            <a href="nosotros.html" class="nav-link">
+                <i class="material-icons">
+                    people
+                </i> Nosotros
+            </a>
+        </li>
         <li><a href="index.html"><i class="material-icons">
                     add_circle_outline
                 </i> Crear salón</a></li>
@@ -71,7 +91,16 @@
                 <span class="material-icons">
                     file_download
                 </span>
-            Exportar</a></li>
+                Exportar/Importar</a></li>
+
+        <li>
+            <button class="btn red flex-align-center" id="empty-data-mobile">
+                <span class="material-icons">
+                    delete_sweep
+                </span>
+                Vaciar datos
+            </button>
+        </li>
     </ul>
 
 
@@ -84,23 +113,16 @@
         </div>
         <div class="col s8 text-center">
             <div class="row">
-                <h3>Exportar datos</h3>
+                <h3>Exportar salón</h3>
                 <ul class="collapsible">
                     <li>
                         <div class="collapsible-header"><i class="material-icons">
                                 receipt_long
                             </i> Instrucciones</div>
                         <div class="collapsible-body">
-                            <p>En esta sección, se puede agregar un nuevo salón a una lista,
-                                especificando el número de materias y el número de estudiantes,
-                                formando una matriz NxM.
-                            </p>
-                            <p>
-                                <b>El número de materias y de estudiantes deben ser ambos mayor a
-                                    0</b>
-                            </p>
-                            <p>
-                                La estructura de datos se guardan automáticamente en el Local Storage del navegador
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, laboriosam similique
+                                recusandae illo omnis accusantium neque, reprehenderit sed unde ad praesentium eos dolor
+                                quod dicta totam amet nobis tempore obcaecati. Odio error doloribus enim consequatur?
                             </p>
                         </div>
                     </li>
@@ -111,31 +133,31 @@
                 <button class="btn" action="json-export">JSON</button>
             </div>
             <div class="row">
-                <h3>Importar datos</h3>
+                <h3>Importar salón</h3>
                 <ul class="collapsible">
                     <li>
                         <div class="collapsible-header"><i class="material-icons">
                                 receipt_long
                             </i> Instrucciones</div>
                         <div class="collapsible-body">
-                            <p>En esta sección, se puede agregar un nuevo salón a una lista,
-                                especificando el número de materias y el número de estudiantes,
-                                formando una matriz NxM.
-                            </p>
-                            <p>
-                                <b>El número de materias y de estudiantes deben ser ambos mayor a
-                                    0</b>
-                            </p>
-                            <p>
-                                La estructura de datos se guardan automáticamente en el Local Storage del navegador
-                            </p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quia cupiditate tenetur
+                                repellendus accusamus ullam nihil vel quidem sapiente. Labore ex distinctio obcaecati
+                                sunt quidem laborum cum quos nostrum corrupti nulla, unde molestias. Consequatur,
+                                ratione!</p>
                         </div>
                     </li>
                 </ul>
             </div>
-            <div class="row" id="classroom-data-export" class="overflow-y max-vh-75">
-                <button class="btn" action="xml-export">XML</button>
-                <button class="btn" action="json-export">JSON</button>
+            <div class="row" id="classroom-data-import" class="overflow-y max-vh-75">
+                <label class="btn custom-file-upload">
+                    <input type="file" name="xml-import" action="xml-import" />
+                    xml
+                </label>
+                <label class="btn custom-file-upload">
+                    <input type="file" name="json-import" action="json-import" />
+                    json
+                </label>
+
             </div>
         </div>
 

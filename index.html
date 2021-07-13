@@ -29,6 +29,13 @@
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li>
+                    <a href="nosotros.html" class="nav-link">
+                        <i class="material-icons">
+                            people
+                        </i> Nosotros
+                    </a>
+                </li>
+                <li>
                     <a href="index.html" class="nav-link">
                         <i class="material-icons">
                             add_circle_outline
@@ -46,16 +53,31 @@
                         </i>
                         Analítica</a></li>
                 <li><a href="exportar.html" class="nav-link">
-                    <span class="material-icons">
-                        file_download
-                    </span>
-                    Exportar</a>
+                        <span class="material-icons">
+                            file_download
+                        </span>
+                        Exportar/Importar</a>
+                </li>
+                <li>
+                    <button class="btn red flex-align-center" id="empty-data">
+                        <span class="material-icons">
+                            delete_sweep
+                        </span>
+                        Vaciar datos
+                    </button>
                 </li>
             </ul>
         </div>
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
+        <li>
+            <a href="nosotros.html" class="nav-link">
+                <i class="material-icons">
+                    people
+                </i> Nosotros
+            </a>
+        </li>
         <li><a href="index.html"><i class="material-icons">
                     add_circle_outline
                 </i> Crear salón</a></li>
@@ -64,15 +86,23 @@
                     edit
                 </i> Editar salón
             </a></li>
-        <li><a href="analitica.html	" class="nav-link">
+        <li><a href="analitica.html	">
                 <i class="material-icons">
                     analytics
                 </i> Analítica</a></li>
-        <li><a href="exportar.html" class="nav-link">
+        <li><a href="exportar.html">
                 <span class="material-icons">
                     file_download
                 </span>
-            Exportar</a>
+                Exportar/Importar</a>
+        </li>
+        <li>
+            <button class="btn red flex-align-center" id="empty-data-mobile">
+                <span class="material-icons">
+                    delete_sweep
+                </span>
+                Vaciar datos
+            </button>
         </li>
     </ul>
 
@@ -81,30 +111,18 @@
     <div class="container mt-3 flex-align-center">
         <div class="row flex-col-align-center">
             <div class="row">
-                <h3>Detalles del salón</h3>
+                <h3>Crear salón</h3>
             </div>
             <div class="row">
                 <ul class="collapsible">
                     <li>
                         <div class="collapsible-header"><i class="material-icons">
-                            receipt_long
-                        </i> Instrucciones</div>
+                                receipt_long
+                            </i> Instrucciones</div>
                         <div class="collapsible-body">
-                            <p>En esta sección, se puede agregar un nuevo salón a una lista, 
-                                especificando el número de materias y el número de estudiantes,
-                                formando una matriz NxM.
-                            </p>
                             <p>
-                                <b>El número de materias y de estudiantes deben ser ambos mayor a
-                                    0</b>
-                            </p>
-                            <p>
-                                La estructura de datos se guardan automáticamente en el Local Storage del navegador
-                            </p>
-                            <p>
-                                <b>Seleccionar alguno de los salones en la lista inferior lo llevará automáticamente
-                                    a la edición del salón
-                                </b>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, laudantium aperiam dolore
+                                impedit fugit facilis voluptatem corporis excepturi eaque, ratione nemo sapiente nihil.
                             </p>
                         </div>
                     </li>
@@ -153,7 +171,7 @@
     <div class="">
         <h5>Salones</h5>
         <div class="collection max-h-35 overflow-y" id="classroom-collection">
-    
+
         </div>
     </div>
 

@@ -29,18 +29,16 @@ function exportClassRoomXML(classRoom) {
 
     for (var i = 0; i < classRoom.subjectNumber; i++) {
         var currentSubject = xmlDoc.createElement('subject');
-        currentSubject.setAttribute('number', i+1);
+        currentSubject.setAttribute('number', i + 1);
 
         if (classRoom['data']) {
             for (var j = 0; j < classRoom.studentNumber; j++) {
-                var currentStudent = xmlDoc.createElement('student');
-
-                if (classRoom['data'][(i+1)+'-'+(j+1)]) {
-                    currentStudent.appendChild(xmlDoc.createTextNode(classRoom['data'][(i+1)+'-'+(j+1)]))
-                    currentStudent.setAttribute('number', j+1);
+                if (classRoom['data'][(i + 1) + '-' + (j + 1)]) {
+                    var currentStudent = xmlDoc.createElement('student');
+                    currentStudent.appendChild(xmlDoc.createTextNode(classRoom['data'][(i + 1) + '-' + (j + 1)]))
+                    currentStudent.setAttribute('number', j + 1);
+                    currentSubject.appendChild(currentStudent);
                 }
-
-                currentSubject.appendChild(currentStudent);
             }
         }
 
@@ -50,6 +48,30 @@ function exportClassRoomXML(classRoom) {
     xmlDoc.firstElementChild.appendChild(fragment);
 
     return xmlDoc;
+}
+
+function importClassRoomFromXML(classRoomXMLString) {
+    var domParser = new DOMParser();
+    var classRoom = {}
+
+    var xmlDoc = domParser.parseFromString(classRoomXMLString, 'text/xml');
+
+    classRoom['studentNumber'] = parseInt(xmlDoc.firstElementChild.getAttribute('studentNumber'));
+    classRoom['subjectNumber'] = parseInt(xmlDoc.firstElementChild.getAttribute('subjectNumber'));
+
+    var students = xmlDoc.getElementsByTagName('student');
+
+    if (students.length > 0) {
+        classRoom['data'] = {};
+
+        for (var i = 0; i < students.length; i++) {
+            var key = students[i].parentElement.getAttribute('number') + '-' + students[i].getAttribute('number');
+
+            classRoom['data'][key] = parseInt(students[i].textContent);
+        }
+    }
+
+    return classRoom;
 }
 
 function getClassRoomMean(classRoom) {
@@ -126,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
             detail: classRooms,
         }));
 
-    if (selectedClassRoom && document.getElementById('classroom-edition'))
+    if (document.getElementById('classroom-edition'))
         document.getElementById('classroom-edition').dispatchEvent(new CustomEvent('fill-classroom', {
             detail: classRooms[selectedClassRoom],
         }));
@@ -159,6 +181,8 @@ document.addEventListener('DOMContentLoaded', function () {
 if (document.getElementById('classroom-edition')) {
     document.getElementById('classroom-edition').addEventListener('fill-classroom', function (event) {
         var classRoom = event.detail;
+        console.log(classRoom);
+        this.innerText = '';
 
         if (!classRoom) {
             this.innerText = '';
@@ -220,7 +244,7 @@ if (document.getElementById('classroom-analytics')) {
         var classRoom = event.detail;
 
         if (!classRoom) {
-            this.innerText = '';
+            this.querySelector('#all-student-mean').value = '';
             return;
         }
 
@@ -231,6 +255,7 @@ if (document.getElementById('classroom-analytics')) {
 if (document.getElementById('classroom-analytics-list')) {
     document.getElementById('classroom-analytics-list').addEventListener('fill-collection', function (event) {
         var collections = event.detail;
+        this.innerText = '';
 
         if (!collections) {
             return;
@@ -243,7 +268,7 @@ if (document.getElementById('classroom-analytics-list')) {
         collectionKeys.forEach(function (collectionKey) {
             var item = classRoomManager.Elements.ClassRoomCollectionItem(collectionKey, collections[collectionKey]);
 
-            if (localStorage.getItem('selectedClassRoom') === collectionKey && 
+            if (localStorage.getItem('selectedClassRoom') === collectionKey &&
                 (getCurrentPath() == 'analitica.html' || getCurrentPath() == 'exportar.html')) {
                 item.classList.add('active');
             }
@@ -251,7 +276,6 @@ if (document.getElementById('classroom-analytics-list')) {
             fragment.appendChild(item);
         });
 
-        this.innerText = '';
         this.appendChild(fragment);
     });
 
@@ -273,6 +297,7 @@ if (document.getElementById('classroom-analytics-list')) {
 if (document.getElementById('classroom-collection')) {
     document.getElementById('classroom-collection').addEventListener('fill-collection', function (event) {
         var collections = event.detail;
+        this.innerText = '';
 
         if (!collections) {
             return;
@@ -305,7 +330,6 @@ if (document.getElementById('classroom-collection')) {
                 window.location = 'editar.html';
             } else {
                 document.dispatchEvent(new Event('DOMContentLoaded'));
-
             }
 
         }
@@ -379,9 +403,27 @@ if (document.getElementById('classroom-section'))
         capture: true,
     });
 
+
+function emptyData() {
+    localStorage.setItem('classRooms', '{}');
+    localStorage.removeItem('selectedClassRoom');
+
+    document.dispatchEvent(new Event('DOMContentLoaded'));
+}
+
+
+if (document.getElementById('empty-data')) {
+    document.getElementById('empty-data').addEventListener('click', emptyData);
+}
+
+if (document.getElementById('empty-data-mobile')) {
+    document.getElementById('empty-data-mobile').addEventListener('click', emptyData);
+}
+
 if (document.getElementById('mean-per-student')) {
     document.getElementById('mean-per-student').addEventListener('fill-analytics', function (event) {
         var classRoom = event.detail;
+        this.innerText = '';
 
         if (!classRoom) {
             this.innerText = '';
@@ -489,6 +531,8 @@ if (document.getElementById('classroom-data-export')) {
         var selectedClassRoom = localStorage.getItem('selectedClassRoom');
         var classRooms = getClassRoomsFromLocalStorage();
         var exportType = null;
+        var extension = null;
+        var fetchString = null;
 
         if (!selectedClassRoom) {
             return;
@@ -498,23 +542,91 @@ if (document.getElementById('classroom-data-export')) {
             case 'xml-export':
                 var xmlObject = exportClassRoomXML(classRooms[selectedClassRoom]);
                 exportType = 'text/xml';
-                var fetchString = new XMLSerializer().serializeToString(xmlObject.documentElement);
+                extension = '.xml';
+                fetchString = new XMLSerializer().serializeToString(xmlObject.documentElement);
 
-        
-            case 'json_export':
+
+            case 'json-export':
                 if (!fetchString) {
                     exportType = 'application/json';
-                    fetchString = JSON.stringify(classRooms);
-                } 
+                    extension = '.json';
+                    fetchString = JSON.stringify(classRooms[selectedClassRoom]);
+                }
 
-                var blob = new Blob([fetchString], {
-                    type: exportType,
-                });
+                var element = document.createElement('a');
+                element.setAttribute('href', 'data:' + exportType + ';charset=utf-8,' + encodeURIComponent(fetchString));
+                element.setAttribute('download', 'classroom' + extension);
 
-                var file = new File([blob], 'classroom', {
-                    type: exportType,
-                })
+                document.body.appendChild(element);
+                element.click();
+
+                document.body.removeChild(element);
                 break;
         }
+    });
+}
+
+if (document.getElementById('classroom-data-import')) {
+    document.getElementById('classroom-data-import').addEventListener('change', function (event) {
+        var classRooms = getClassRoomsFromLocalStorage();
+        var file = event.target.files[0];
+        var fileReader = new FileReader();
+        var action = event.target.getAttribute('action');
+
+        fileReader.onload = function () {
+            try {
+                var classRoom = null;
+                switch (action) {
+                    case 'xml-import':
+                        if (file.type !== 'text/xml') {
+                            throw 'aaa';
+                        }
+                        classRoom = importClassRoomFromXML(this.result);
+                        break;
+
+                    case 'json-import':
+                        if (file.type !== 'application/json') {
+                            throw 'aaa';
+                        }
+
+                        classRoom = JSON.parse(this.result);
+
+                        if (!classRoom['studentNumber'] || !classRoom['subjectNumber']) throw 'aaa';
+
+                        if (classRoom['data']) {
+                            var dataKeys = Object.keys(classRoom['data']);
+
+                            dataKeys.forEach(function (dataKey) {
+                                var dataKeyArray = dataKey.split('-');
+
+                                if (dataKeyArray.length != 2 || parseInt(dataKeyArray[0]) > classRoom['subjectNumber'] ||
+                                    parseInt(dataKeyArray[1]) > classRoom['studenttNumber']) {
+                                    throw 'aaa';
+                                }
+                            });
+                        }
+                }
+
+                if (classRoom) {
+                    var nextKey = 1;
+                    while (classRooms[nextKey]) {
+                        nextKey++;
+                    }
+
+                    classRooms[nextKey] = classRoom;
+                    setClassRoomsToLocalStorage(classRooms);
+                    document.dispatchEvent(new Event('DOMContentLoaded'));
+                }
+            } catch (error) {
+                M.toast({
+                    html: 'Esquema o tipo de archivo inválido',
+                    classes: "red"
+                });
+            }
+        }
+
+        fileReader.readAsText(file);
+    }, {
+        capture: true,
     });
 }

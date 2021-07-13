@@ -81,3 +81,11 @@ a.nav-link {
         font-size: 120% !important;
     }
 }
+
+input[type="file"] {
+    display: none;
+}
+
+.text-justify {
+    text-align: justify;
+}
